@@ -10,6 +10,7 @@ import pyaudio
 from six.moves import queue
 import json
 from datetime import datetime
+import struct,math
 
 # Audio recording parameters
 RATE = 16000
@@ -34,6 +35,18 @@ for k in keywords:
 totalWords = 0
 previousWords = 0
 startTime = datetime.now()
+sumVolume = 0
+
+def rms( data ):
+    count = len(data)/2
+    format = "%dh"%(count)
+    shorts = struct.unpack( format, data )
+    sum_squares = 0.0
+    for sample in shorts:
+        n = sample * (1.0/32768)
+        sum_squares += n*n
+    return math.sqrt( sum_squares / count )
+
 
 class MicrophoneStream(object):
     """Opens a recording stream as a generator yielding the audio chunks."""
@@ -78,6 +91,7 @@ class MicrophoneStream(object):
         return None, pyaudio.paContinue
 
     def generator(self):
+        global sumVolume
         while not self.closed:
             # Use a blocking get() to ensure there's at least one chunk of
             # data, and stop iteration if the chunk is None, indicating the
@@ -85,6 +99,7 @@ class MicrophoneStream(object):
             chunk = self._buff.get()
             if chunk is None:
                 return
+            sumVolume += rms(chunk)
             data = [chunk]
 
             # Now consume whatever other data's still buffered.
@@ -96,7 +111,7 @@ class MicrophoneStream(object):
                     data.append(chunk)
                 except queue.Empty:
                     break
-
+                
             yield b''.join(data)
 # [END audio_stream]
 
@@ -156,8 +171,10 @@ def listen_print_loop(responses):
                 # print('second:',(datetime.now()-startTime).seconds)
                 speed=totalWords/(datetime.now()-startTime).seconds*60*(2/3)
                 print('speed: ',speed,' words/minute')
+                print('avgVolume: ',sumVolume/(datetime.now()-startTime).seconds,'')
                 f=open('count.json','w')
                 count['speed']=speed
+                count['volume']=sumVolume/(datetime.now()-startTime).seconds
                 json.dump(count,f)
                 f.close()
             else:
