@@ -9,6 +9,7 @@ from google.cloud.speech import types
 import pyaudio
 from six.moves import queue
 import json
+from datetime import datetime
 
 # Audio recording parameters
 RATE = 16000
@@ -29,6 +30,10 @@ keywords=['like', 'you know','just','really','right']
 count={}
 for k in keywords:
     count[k]=0
+
+totalWords = 0
+previousWords = 0
+startTime = datetime.now()
 
 class MicrophoneStream(object):
     """Opens a recording stream as a generator yielding the audio chunks."""
@@ -108,6 +113,10 @@ def listen_print_loop(responses):
     the next result to overwrite it, until the response is a final one. For the
     final one, print a newline to preserve the finalized transcription.
     """
+    global count
+    global totalWords
+    global previousWords
+
     num_chars_printed = 0
     try:
         for response in responses:
@@ -134,7 +143,14 @@ def listen_print_loop(responses):
             if not result.is_final:
                 # sys.stdout.write(transcript + overwrite_chars + '\r')
                 # sys.stdout.flush()
-
+                tmpCount = len(transcript.split())
+                if (tmpCount > previousWords):
+                    totalWords += tmpCount - previousWords
+                    previousWords = tmpCount
+                if (tmpCount == 1):
+                    # totalWords += tmpCount
+                    previousWords = tmpCount
+                print(totalWords)
                 num_chars_printed = len(transcript)
 
             else:
@@ -159,6 +175,7 @@ def listen_print_loop(responses):
     except KeyboardInterrupt:
         quit()
     except:
+        # print("Unexpected error:", sys.exc_info()[0])
         return
 
 def main():
