@@ -116,6 +116,7 @@ def listen_print_loop(responses):
     global count
     global totalWords
     global previousWords
+    global startTime
 
     num_chars_printed = 0
     try:
@@ -152,13 +153,18 @@ def listen_print_loop(responses):
                     previousWords = tmpCount
                 print(totalWords)
                 num_chars_printed = len(transcript)
-
+                # print('second:',(datetime.now()-startTime).seconds)
+                speed=totalWords/(datetime.now()-startTime).seconds*60*(2/3)
+                print('speed: ',speed,' words/minute')
+                f=open('count.json','w')
+                count['speed']=speed
+                json.dump(count,f)
+                f.close()
             else:
                 print(transcript)
                 for keyword in keywords:
                     if (transcript.find(keyword) > -1):
                         print(keyword)
-                        print('ddddddddddd')
                         count[keyword]+=1
                         f=open('count.json','w')
                         json.dump(count,f)
