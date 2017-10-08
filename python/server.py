@@ -1,6 +1,7 @@
 from flask import Flask
+from flask import send_from_directory
 app = Flask(__name__)
 
-@app.route("/")
-def hello():
-    return app.send_static_file('count.json')
+@app.route("/<path:path>")
+def hello(path):
+    return send_from_directory('./', path)
