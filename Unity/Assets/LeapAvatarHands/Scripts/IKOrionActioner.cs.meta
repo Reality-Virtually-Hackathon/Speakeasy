@@ -1,0 +1,36 @@
+fileFormatVersion: 2
+guid: 5623c86ebbd6f5549af359bf24288188
+labels:
+- leap
+- motion
+- leapmotion
+- avatar
+- hand
+- hands
+- character
+- inversekinematics
+- ik
+- Orion
+- Reality
+- Virtual
+- VirtualReality
+- VR
+- Avatar
+- Character
+- Hand
+- Hands
+- Ik
+- Inversekinematics
+- Leap
+- Leapmotion
+- Motion
+timeCreated: 1456546533
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
