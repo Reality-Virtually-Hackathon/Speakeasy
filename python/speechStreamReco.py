@@ -8,7 +8,7 @@ from google.cloud.speech import enums
 from google.cloud.speech import types
 import pyaudio
 from six.moves import queue
-# [END import_libraries]
+import json
 
 # Audio recording parameters
 RATE = 16000
@@ -25,6 +25,10 @@ class bcolors:
     UNDERLINE = '\033[4m'
 
 keywords=['like', 'you know','just','really','right']
+
+count={}
+for k in keywords:
+    count[k]=0
 
 class MicrophoneStream(object):
     """Opens a recording stream as a generator yielding the audio chunks."""
@@ -134,11 +138,15 @@ def listen_print_loop(responses):
                 num_chars_printed = len(transcript)
 
             else:
-                # output = transcript + overwrite_chars
+                print(transcript)
                 for keyword in keywords:
                     if (transcript.find(keyword) > -1):
                         print(keyword)
-                # print(output)
+                        print('ddddddddddd')
+                        count[keyword]+=1
+                        f=open('count.json','w')
+                        json.dump(count,f)
+                        f.close()
                 # print(transcript + overwrite_chars)
 
                 # Exit recognition if any of the transcribed phrases could be
