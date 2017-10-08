@@ -1,0 +1,23 @@
+{"type":"root","options":{
+
+},"size":{"width":3508,"height":2480},"children":[{"name":"dot","type":"png","options":{
+
+},"offset":{"left":2636,"top":2150},"size":{"width":98,"height":99},"relativePath":"dot","children":[
+
+]},{"name":"1","type":"text","options":{"opacity":100,"textContents":"Volume","textFont":"HPSimplified-Regular","textSize":67,"textColor":{"red":255,"green":255,"blue":255},"textHorizontalWrap":true},"offset":{"left":3210,"top":2295},"size":{"width":211,"height":50},"relativePath":"1","children":[
+
+]},{"name":"Volume","type":"png","options":{
+
+},"offset":{"left":3295,"top":1660},"size":{"width":48,"height":450},"relativePath":"Volume","children":[
+
+]},{"name":"icon","type":"png","options":{
+
+},"offset":{"left":3235,"top":1463},"size":{"width":200,"height":811},"relativePath":"icon","children":[
+
+]},{"name":"1","type":"text","options":{"opacity":100,"textContents":"Performance Evaluation","textFont":"MyriadPro-Regular","textSize":90,"textColor":{"red":255,"green":255,"blue":255},"textHorizontalWrap":true},"offset":{"left":228,"top":1753},"size":{"width":785,"height":67},"relativePath":"1 (2)","children":[
+
+]},{"name":"1","type":"png","options":{
+
+},"offset":{"left":216,"top":1842},"size":{"width":2920,"height":503},"relativePath":"1","children":[
+
+]}]}

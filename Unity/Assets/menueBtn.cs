@@ -8,7 +8,7 @@ public class menueBtn : MonoBehaviour {
     
 	// Use this for initialization
 	void Start () {
-        b1.onClick.AddListener(()=>{ Application.LoadLevel("scene1"); });
+        b1.onClick.AddListener(()=>{ Application.LoadLevel("SixScenes"); });
 	}
 	
 	// Update is called once per frame
