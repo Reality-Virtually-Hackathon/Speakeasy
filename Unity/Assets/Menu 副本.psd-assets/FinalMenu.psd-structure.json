@@ -1,0 +1,9 @@
+{"type":"root","options":{
+
+},"size":{"width":4689,"height":2480},"children":[{"name":"History","type":"button","options":{"buttonStates":["normal","highlighted"]},"offset":{"left":2950,"top":618},"size":{"width":939,"height":1790},"relativePath":"History","children":[
+
+]},{"name":"Master","type":"button","options":{"buttonStates":["normal","highlighted"]},"offset":{"left":1861,"top":618},"size":{"width":939,"height":1790},"relativePath":"Master","children":[
+
+]},{"name":"Scene","type":"button","options":{"buttonStates":["normal","highlighted"]},"offset":{"left":772,"top":618},"size":{"width":939,"height":1790},"relativePath":"Scene","children":[
+
+]}]}

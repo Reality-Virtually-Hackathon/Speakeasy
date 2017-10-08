@@ -1,0 +1,9 @@
+{"type":"root","options":{
+
+},"size":{"width":4689,"height":2480},"children":[{"name":"Logo","type":"group","options":{
+
+},"offset":{"left":1456,"top":137},"size":{"width":1890,"height":452},"relativePath":"Logo","children":[{"name":"SPEAKEASY","type":"png","options":{
+
+},"offset":{"left":1456,"top":137},"size":{"width":1890,"height":452},"relativePath":"Logo/SPEAKEASY","children":[
+
+]}]}]}
